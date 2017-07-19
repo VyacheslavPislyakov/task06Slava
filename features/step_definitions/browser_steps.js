@@ -1,6 +1,7 @@
 var seleniumWebdriver = require('selenium-webdriver');
 var protractor = require('protractor');
 var plugins_1 = require('protractor/built/plugins.js')
+
 var {defineSupportCode} = require('cucumber');
 
 defineSupportCode(function({Given, When, Then}) {
@@ -26,8 +27,4 @@ defineSupportCode(function({Given, When, Then}) {
             return element.click();
         });
     });
-
-
-
-
 });
