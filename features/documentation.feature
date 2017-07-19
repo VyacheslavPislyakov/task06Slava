@@ -4,5 +4,5 @@ Feature: Example feature
 
   Scenario: Reading documentation
     Given I am going to the Onliner.by
-    When I click on "Каталог"
+    When I click on "Мобильные телефоны"
 	When I click to phone
