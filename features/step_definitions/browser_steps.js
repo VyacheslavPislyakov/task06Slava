@@ -10,17 +10,8 @@ defineSupportCode(function({Given, When, Then}) {
 		return this.browser.get('https://www.onliner.by/');
 	});
 
-	When('I click on {stringInDoubleQuotes}', function(text) {
+	When('I click on mobile phones', function() {
 		var xpath1 = '//*[@id="container"]/div/div[2]/div/div/div[1]/div/div[1]/ul/li[1]/a/span/span';
-		return this.browser.element(by.xpath(xpath1)).then(function(element) {
-            return element.click();
-        });
-	});
-
-	When('I click to phone', function() {
-		var cssSel = "ul.catalog-bar__list > li:nth-child(1) > a";
-		return element(by.css(cssSel)).then(function(element) {
-            return element.click();
-        });
+		return this.browser.element(by.xpath(xpath1)).click();
 	});
 });
