@@ -26,7 +26,9 @@ defineSupportCode(function({Given, When, Then}) {
 	});
 
 	When('I set filter {stringInDoubleQuotes}', function(text) {
-		return this.browser.element.all(by.cssContainingText('span', text)).first().click();
+		let el = this.browser.element.all(by.cssContainingText('span', text)).first();
+		this.browser.executeScript("arguments[0].scrollIntoView();", el)
+		return el.click();
 	});
 
 	When('Should have been shown set filter {stringInDoubleQuotes}', function(text) {
@@ -90,4 +92,5 @@ defineSupportCode(function({Given, When, Then}) {
 		var elem = this.browser.element.all(by.cssContainingText('span', text)).first();
 		return this.browser.wait(EC.invisibilityOf(elem));
 	});
+
 });

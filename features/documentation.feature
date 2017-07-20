@@ -12,6 +12,8 @@ Feature: Example feature
     When Click "Добавить к сравнению" to compare phone
     Then Should have been set compare "1 товар  в сравнении"
     When Come back to mobile page
+    When I set filter "2016"
+    When Should have been shown set filter "2016"
     When I find "Apple iPhone SE 16GB Space Gray"
     Then Should have been set "Смартфон Apple iPhone SE 16GB Space Gray"
     When Click "Добавить к сравнению" to compare phone
