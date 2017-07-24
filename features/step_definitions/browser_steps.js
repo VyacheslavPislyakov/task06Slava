@@ -2,7 +2,6 @@ const URL = 'https://www.onliner.by/';
 var seleniumWebdriver = require('selenium-webdriver');
 var assert = require('chai').assert;
 var protractor = require('protractor');
-// var plugins_1 = require('protractor/built/plugins.js');
 var by = new protractor.ProtractorBy();
 var {defineSupportCode} = require('cucumber');
 var EC = new protractor.ProtractorExpectedConditions();
@@ -28,7 +27,9 @@ defineSupportCode(function({Given, When, Then}) {
 	When('I set filter {stringInDoubleQuotes}', function(text) {
 		let el = this.browser.element.all(by.cssContainingText('span', text)).first();
 		this.browser.executeScript("arguments[0].scrollIntoView();", el)
-		return el.click();
+		.then(() => {
+			return el.click();
+		});
 	});
 
 	When('Should have been shown set filter {stringInDoubleQuotes}', function(text) {
@@ -38,9 +39,13 @@ defineSupportCode(function({Given, When, Then}) {
 
 	When('I find {stringInDoubleQuotes}', function(text) {
 		var wantedElement = this.browser.element(by.cssContainingText('span', text));
-		this.browser.wait(EC.elementToBeClickable(wantedElement), 5000);
-		this.browser.executeScript("arguments[0].scrollIntoView();", wantedElement);
-		return wantedElement.click();
+		this.browser.wait(EC.elementToBeClickable(wantedElement), 5000)
+		.then(() => {
+			this.browser.executeScript("arguments[0].scrollIntoView();", wantedElement);
+		})
+		.then(() => {
+			return wantedElement.click();
+		});
 	});
 
 	Then('Should have been set {stringInDoubleQuotes}', function (text) {
@@ -61,7 +66,6 @@ defineSupportCode(function({Given, When, Then}) {
 
 	When('Going to compare page', function() {
 		return this.browser.element.all(by.css(locatorToComparePage)).first().click();
-		// return this.browser.sleep(5000);
 	});
 
 	Then('Compare all function of phones', function () {
@@ -84,8 +88,10 @@ defineSupportCode(function({Given, When, Then}) {
 
 	When('Delete iPhone SE', function () {
 		var ele = this.browser.element(by.css(locatorRemovedPhone));
-		this.browser.wait(EC.visibilityOf(ele), 5000);
-		return ele.click();
+		this.browser.wait(EC.visibilityOf(ele), 5000)
+		.then(() => {
+			return ele.click();
+		});
 	});
 
 	Then('Verify that {stringInDoubleQuotes} has been removed', function (text) {
